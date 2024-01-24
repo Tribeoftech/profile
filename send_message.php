@@ -1,7 +1,7 @@
 <?php
 
 // Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"])) {
     // Retrieve form data
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -21,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Redirect to a thank you page or display a success message
     header("Location: thank_you.html");
+    exit();
+} else {
+    // Redirect to an error page or display an error message
+    header("Location: error.html");
     exit();
 }
 
