@@ -17,11 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"])) {
                "X-Mailer: PHP/" . phpversion();
 
     // Send the email
-    mail($to, $subject, $message, $headers);
-
-    // Redirect to a thank you page or display a success message
-    header("Location: thank_you.html");
-    exit();
+    if (mail($to, $subject, $message, $headers)) {
+        // Redirect to a thank you page or display a success message
+        header("Location: thank_you.html");
+        exit();
+    } else {
+        // Redirect to an error page or display an error message
+        header("Location: error.html");
+        exit();
+    }
 } else {
     // Redirect to an error page or display an error message
     header("Location: error.html");
