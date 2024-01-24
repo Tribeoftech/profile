@@ -1,8 +1,7 @@
-hp
+<?php
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     // Retrieve form data
     $name = $_POST["name"];
     $email = $_POST["email"];
@@ -24,4 +23,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: thank_you.html");
     exit();
 }
+
 ?>
