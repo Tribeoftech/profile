@@ -1,38 +1,18 @@
 <?php
 
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["name"])) {
 
-    // Retrieve form data
-    $name = htmlspecialchars($_POST["name"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $subject = htmlspecialchars($_POST["subject"]);
-    $message = htmlspecialchars($_POST["message"]);
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $subject = $_POST['subject'];
+    $mailFrom = $_POST['mail'];
+    $message = $_POST['message'];
 
-    // Simple form validation
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo "Please fill out all fields.";
-        exit();
-    }
+    $mailTo = "gratefulgrowing333@gmail.com";
+    $headers = "From: ".$mailFrom;
+    $txt = "You have received an e-mail from ".$name.".\n\n".$message;
 
-    // Your email address
-    $to = "gratefulgrowing333@gmail.com";
-
-    // Email headers
-    $headers = "From: $email" . "\r\n" .
-        "Reply-To: $email" . "\r\n" .
-        "X-Mailer: PHP/" . phpversion();
-
-    // Send the email
-    if (mail($to, $subject, $message, $headers)) {
-        echo "Message sent successfully. Thank you!";
-    } else {
-        echo "Error sending the message. Please try again later.";
-    }
-} else {
-
-    // If not a POST request, display an error message
-    echo "Invalid request.";
+    mail($mailTo, $subject, $txt, $headers);
+    header("Location: index.php?mailsend");
 }
 
 ?>
