@@ -908,6 +908,12 @@
     .main-title h2 .bg-text {
       font-size: 4rem;
     }
+    .icon {
+      font-size: 24px; /* adjust this value to your desired size */
+    }
+    .email-icon {
+      font-size: 30px; /* adjust this value to your desired size */
+    }
   }
   
   /*# sourceMappingURL=styles.css.map */
